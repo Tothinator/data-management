@@ -24,9 +24,31 @@ var database = firebase.database();
     // update HTML
 
 // Submit new info button function
+$("#add-employee-btn").on("click", function(event) {
+
+    event.preventDefault();
+
     // save all fields as variables
+    var name = $("#employee-name-input").val().trim();
+    var role = $("#role-input").val().trim();
+    var startDate = $("#start-input").val().trim();
+    var monthlyRate = $("#rate-input").val().trim();
+
     // set these variables in the database (this will trigger initial function)
+    database.ref().push({
+        name: name,
+        role: role,
+        startDate: startDate,
+        monthlyRate: monthlyRate
+    });
+
     // clear input boxes
+    $("#employee-name-input").val("");
+    $("#role-input").val("");
+    $("#start-input").val("");
+    $("#rate-input").val("");
+
+}); 
 
 
 // Anything else?
