@@ -30,13 +30,8 @@ var database = firebase.database();
         var monthlyRate = sv.monthlyRate;
 
         // split the startdate into month, day, and year
-        var startMonth = startDate.split("/")[0];
-        var startDay = startDate.split("/")[1];
-        var startYear = startDate.split("/")[2];
-
-        var startDateObj = new Date(startMonth, startDay, startYear);
-        var today = new Date();
-        var months = String((today - startDateObj).getMonth());
+        var momentDate = moment().format(startDate, "MM/DD/YYYY");
+        var months = moment().diff(momentDate, 'months')
 
         addRow(name, role, startDate, months, monthlyRate, months * monthlyRate);
     })
